@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ishan Khanna</title>
+    <meta name="keywords" content="Ishan Khanna's website">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="../public/style.css">
+</head>
+
+
+<body>
+
+    <!--Home-->
+
+
+    <div id="home">
+        <!-- Header -->
+        <div class="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a>Pages</a>
+                <ul>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#images">Images</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                </ul>
+            </li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        </div>
+
+        <!-- Content -->
+
+        <div class="mydetails">
+            <h1><%= home.name %></h1>
+            <div class="designation"><%=home.designation%></div>
+
+        </div>
+
+
+
+        <!--<span class="dots">...</span><span class="moredesc"><%= home.company %></span>-->
+        <!--<div class="readmore" id="rmbtn"><a href="#">Read More</a></div>-->
+
+
+    </div>
+
+    <!--About-->
+
+    <div id="about">
+        <div class="aboutouter">
+            <h1 class="aboutheading"><i class="fas fa-male"></i> <%= about.title %> <i class="fas fa-male"></i></h1>
+            <div class="abconouter">
+                <div class="aboutcontent box2">
+                    <h3 class="abouttitle"><%= about.abouttitle %></h3>
+                    <p class="aboutdesc"><%= about.aboutdesc %><span class="dots">...</span><span class="moredesc"><%= about.moredescription %></span></p>
+                    <a class="readmore"> Read More </a>
+                </div>
+
+                <div class="aboutimage box2">
+                    <img src="../public/img1.png">
+                </div>
+
+                <div class="aboutbars box2">
+                    <% about.skills.forEach(function(skill){  %>
+                        <div class="progdetail">
+                            <div class="skilldetail">
+                                <p class="skillname"><%= skill.name %><span><%= skill.percentage %></span></p>
+                            </div>
+                            <!--<div class="w3-red" style="height:24px;width:%"></div>-->
+                            <div class="meter red"><span style="width: <%= skill.percentage %>%"></span></div>
+                        </div>
+                    <%  }) %>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Services-->
+
+    <div id="services">
+        <div class="serviceheader"><%= services.title %></div>
+        <div class="servicelist">
+            <% services.details.forEach(function(service){ %>
+            <div class="serviceitems">
+                <div class="serviceitemname"><i class="<%= service.icon %>"></i> <%= service.name %></div>
+                <div class="serviceiteminfo"><%= service.description %></div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+
+
+    <!--Education-->
+    <div id = 'education' class = 'education'>
+        <div class = 'educationtop'>
+            <div class ='educationtoptext'>
+                Education
+            </div>
+        </div>
+        <div class = 'educationbottom'>
+            <% for(let i = 0; i< education.length;i++) { %>
+                <% if((i%2)===0) { %>
+                    <div class= 'educationleft'>
+                        <h3><%= education[i].level %></h3>
+                        <div class = 'eltext'>
+                            <h4>Year : <%= education[i].year %></h4>
+                            <%if(i!==2){%><h4>Specialisation : <%= education[i].specialisation %> </h4><% } %>
+                            <h4>School/College : <%= education[i].school %></h4>
+                            <% if(i!==0){ %><h4>Board/University : <%= education[i].board %></h4><%}%>
+                        </div>
+                    </div>
+                <% } else {%>
+                    <div class ='educationright'>
+                        <div class = 'ertext'>
+                            <h4>Year : <%= education[i].year %></h4>
+                            <h4>Specialisation : <%= education[i].specialisation %></h4>
+                            <h4>School/College : <%= education[i].school %></h4>
+                            <h4>Board/University : <%= education[i].board %></h4>
+                        </div>
+                        <h3><%= education[i].level %></h3>
+
+                    </div>
+                <%}%>
+            <% }%>
+        </div>
+    </div>
+
+    <!--Projects-->
+    <div id="projects">
+        <h1 class="projectheading">Projects</h1>
+        <div class="allprojects">
+            <div class="projectoverview">
+                <h2 class="overviewtitle"><%= project.overview.title %></h2>
+                <p class="overviewdetails"><%= project.overview.details %></p>
+            </div>
+            <div class="project3 borderstyle">
+                <h5 class="project3date"><%= project.list[2].date %></h5>
+                <h4 class="project3name"><%= project.list[2].title %></h4>
+                <p class="project3detail"><%= project.list[2].detail %></p>
+            </div>
+
+            <div class="project1 borderstyle">
+                <h5 class="project1date"><%= project.list[0].date %></h5>
+                <h4 class="project1name"><%= project.list[0].title %></h4>
+                <p class="project1detail"><%= project.list[0].detail %></p>
+            </div>
+
+            <div class="project2 borderstyle">
+                <h5 class="project2date"><%= project.list[1].date %></h5>
+                <h4 class="project2name"><%= project.list[1].title %></h4>
+                <p class="project2detail"><%= project.list[1].detail %></p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Images -->
+    <div id="images">
+        <div class="imgheading">
+            Images
+        </div>
+        <div class="imagegrid">
+            <div class="line1">
+                <img src="<%= images[0] %>" class="img1">
+                <img src="<%= images[1] %>" class="img2">
+                <img src="<%= images[2] %>" class="img3">
+            </div>
+            <div class="line2">
+                <img src="<%= images[3] %>" class="img4">
+                <img src="<%= images[4] %>" class="img5">
+                <img src="<%= images[5] %>" class="img6">
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Testimonials -->
+    <div id="testimonials">
+    <div class="testimonial" id="section6">
+        <h3 class="heading"><span class="beloved">Beloved Customers<span class="pipe">|</span></span><br><%= testimonial.heading %>s</h3>
+        <div class="testconouter">
+        <div class="container">
+            <i class="fa fa-quote-left"></i>
+            <div id="a1">
+                <div class="left-img">
+                    <img src="<%- testimonial.content[0].img%>" height= "200px" width= "200px">
+                </div>
+                <div class="right-content"><%= testimonial.content[0].content %></div>
+            </div>
+            <div id="a2">
+                <img src="<%- testimonial.content[1].img%>" width = "80%" height= "250px">
+            </div>
+            <div id="a3">
+                <div class="content"><%= testimonial.content[2].content%></div>
+            </div>
+        </div>
+        <div class="testimonialdots">
+                <span onclick= "changeImgto(0)" class="dot"></span>
+                <span onclick= "changeImgto(1)" class="dot"></span>
+                <span onclick= "changeImgto(2)" class="dot"></span>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <!--Contact-->
+
+        <div id = 'contact' class='contact'>
+            <div class = 'contacttop'>
+                <div class ='contacttoptext'>
+                    <%= contact.title %>
+                </div>
+            </div>
+            <div class='contactbottom'>
+                <div class='cbleft'>
+                    <h3>Address Info</h3>
+                    <% contact.content.forEach(function(type) {%>
+                        <div class= 'contacthead'>
+                            <i class="<%- type.icon %>"></i>
+                            <h4><%= type.name %></h4>
+                        </div>
+                        <div class='contactvalues'>
+                            <% type.content.forEach(function(list){ %>
+                                <p><%= list %></p>
+                            <% }) %>
+                        </div>
+                    <% }) %>
+                </div>
+                <div class='cbright'>
+                    <h3>Get In Touch</h3>
+                    <form method="post" action="/resume">
+                        <div class='form-name form-elem '>
+                            <label><i class="fas fa-user" id="form-name" aria-hidden="true"></i> Name</label>
+                            <input type="text" name="name" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+                        </div>
+                        <div class = 'form-email form-elem'>
+                            <label><i class="fas fa-envelope" id="form-email" aria-hidden="true"></i>Email</label>
+                            <input type="email" name="emailid" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                        </div>
+                        <div class = 'form-phone form-elem'>
+                            <label><i class="fas fa-phone" id="form-phone" aria-hidden="true"></i>Phone</label>
+                            <input type="text" name="phone" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
+                        </div>
+                        <div class='form-message form-elem'>
+                            <label><i class="far fa-edit" id="form-message" aria-hidden="true"></i>Message</label>
+                            <textarea name="message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
+                        </div>
+                        <div class='form-submit form-elem'>
+                            <input type="submit" value="Submit" id="submit-form">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <!--<div>-->
+            <!--<h2>Image Modal</h2>-->
+            <!--<p>In this example, we use CSS to create a modal (dialog box) that is hidden by default.</p>-->
+            <!--<p>We use JavaScript to trigger the modal and to display the current image inside the modal when it is clicked on. Also note that we use the value from the image's "alt" attribute as an image caption text inside the modal.</p>-->
+
+            <!--<img id="myImg" src="../public/test1.jpg" alt="Snow" style="width:100%;max-width:300px">-->
+        <!--</div>-->
+        <!--&lt;!&ndash; The Modal &ndash;&gt;-->
+        <!--<div id="myModal" class="modal">-->
+            <!--<span class="close">&times;</span>-->
+            <!--<img class="modal-content" id="img01">-->
+            <!--<div id="caption"></div>-->
+        <!--</div>-->
+        <!---->
+        <button onclick="topFunction()" id="myBtn" title="Go to top"></button>
+        <script src="../public/main.js"></script>
+
+</body>
+
+</html>
