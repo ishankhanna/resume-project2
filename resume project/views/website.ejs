@@ -14,8 +14,6 @@
 <body>
 
     <!--Home-->
-
-
     <div id="home">
         <!-- Header -->
         <div class="navbar">
@@ -46,14 +44,11 @@
 
 
 
-        <!--<span class="dots">...</span><span class="moredesc"><%= home.company %></span>-->
-        <!--<div class="readmore" id="rmbtn"><a href="#">Read More</a></div>-->
 
 
     </div>
 
     <!--About-->
-
     <div id="about">
         <div class="aboutouter">
             <h1 class="aboutheading"><i class="fas fa-male"></i> <%= about.title %> <i class="fas fa-male"></i></h1>
@@ -85,7 +80,6 @@
     </div>
 
     <!--Services-->
-
     <div id="services">
         <div class="serviceheader"><%= services.title %></div>
         <div class="servicelist">
@@ -182,41 +176,84 @@
         </div>
     </div>
 
+    <!--<div id="images">-->
+        <!--<div class="imgheading">-->
+            <!--Images-->
+        <!--</div>-->
+        <!--<div class="gallery">-->
+        <!--&lt;!&ndash; Photo Grid &ndash;&gt;-->
+        <!--<div class="row">-->
+            <!--<div class="column">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+                <!--<img src="../public/g2.jpg" style="width:100%">-->
+                <!--<img src="../public/g2.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+
+            <!--</div>-->
+            <!--<div class="column">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+                <!--<img src="../public/g2.jpg" style="width:100%">-->
+                <!--<img src="../public/g2.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+            <!--</div>-->
+            <!--<div class="column">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+                <!--<img src="../public/g2.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+            <!--</div>-->
+            <!--<div class="column">-->
+                <!--<img src="../public/g2.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+                <!--<img src="../public/g1.jpg" style="width:100%">-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
 
 
 
-    <!-- Testimonials -->
-    <div id="testimonials">
-    <div class="testimonial" id="section6">
-        <h3 class="heading"><span class="beloved">Beloved Customers<span class="pipe">|</span></span><br><%= testimonial.heading %>s</h3>
-        <div class="testconouter">
-        <div class="container">
-            <i class="fa fa-quote-left"></i>
-            <div id="a1">
-                <div class="left-img">
-                    <img src="<%- testimonial.content[0].img%>" height= "200px" width= "200px">
+    <!-- Testimonials 2 -->
+    <div class= "container6" id="testimonials">
+        <div class="testheading">
+            <h1>Testimonials</h1>
+        </div>
+        <!-- Slideshow container -->
+        <div class="slideshow-container">
+            <% for(let i = 0 ; i< testimonials.image_loc.length ; i++) { %>
+                <div class="grid_container7">
+                    <div class="grid_container7_ele">
+                        <div class="grid_container7_ele_left fade">
+                            <img src="<%- testimonials.image_loc[i]%>" no-repeat alt="Image">
+                        </div>
+                        <div class="grid_container7_ele_right fade">
+                            <p>
+                                <%= testimonials.content[i] %>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="right-content"><%= testimonial.content[0].content %></div>
-            </div>
-            <div id="a2">
-                <img src="<%- testimonial.content[1].img%>" width = "80%" height= "250px">
-            </div>
-            <div id="a3">
-                <div class="content"><%= testimonial.content[2].content%></div>
-            </div>
-        </div>
-        <div class="testimonialdots">
-                <span onclick= "changeImgto(0)" class="dot"></span>
-                <span onclick= "changeImgto(1)" class="dot"></span>
-                <span onclick= "changeImgto(2)" class="dot"></span>
-        </div>
+            <% } %>
+            <br>
         </div>
     </div>
-    </div>
+
+
+
 
     <!--Contact-->
-
         <div id = 'contact' class='contact'>
             <div class = 'contacttop'>
                 <div class ='contacttoptext'>
@@ -240,45 +277,56 @@
                 </div>
                 <div class='cbright'>
                     <h3>Get In Touch</h3>
-                    <form method="post" action="/resume">
+                    <div id="postform">
                         <div class='form-name form-elem '>
                             <label><i class="fas fa-user" id="form-name" aria-hidden="true"></i> Name</label>
-                            <input type="text" name="name" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+                            <input type="text" name="Name" id="Name-Input" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
                         </div>
                         <div class = 'form-email form-elem'>
                             <label><i class="fas fa-envelope" id="form-email" aria-hidden="true"></i>Email</label>
-                            <input type="email" name="emailid" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                            <input type="email" name="Email" id="Email-Input" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
                         </div>
                         <div class = 'form-phone form-elem'>
                             <label><i class="fas fa-phone" id="form-phone" aria-hidden="true"></i>Phone</label>
-                            <input type="text" name="phone" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
+                            <input type="tel" name="Phone" id="Phone-Input" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required="">
                         </div>
                         <div class='form-message form-elem'>
                             <label><i class="far fa-edit" id="form-message" aria-hidden="true"></i>Message</label>
-                            <textarea name="message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
+                            <textarea name="Message" id="Message-Input" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
                         </div>
                         <div class='form-submit form-elem'>
-                            <input type="submit" value="Submit" id="submit-form">
+                            <button id="submit-form">Submit</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-        <!---->
-        <!--<div>-->
-            <!--<h2>Image Modal</h2>-->
-            <!--<p>In this example, we use CSS to create a modal (dialog box) that is hidden by default.</p>-->
-            <!--<p>We use JavaScript to trigger the modal and to display the current image inside the modal when it is clicked on. Also note that we use the value from the image's "alt" attribute as an image caption text inside the modal.</p>-->
 
-            <!--<img id="myImg" src="../public/test1.jpg" alt="Snow" style="width:100%;max-width:300px">-->
-        <!--</div>-->
-        <!--&lt;!&ndash; The Modal &ndash;&gt;-->
-        <!--<div id="myModal" class="modal">-->
-            <!--<span class="close">&times;</span>-->
-            <!--<img class="modal-content" id="img01">-->
-            <!--<div id="caption"></div>-->
-        <!--</div>-->
-        <!---->
+
+
+
+    <!-- footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="agileinfo-grids">
+                <div class="agile-grid-left agile-grid-right text-center">
+                    <div class="social mb-4">
+                        <ul>
+                            <% footer.sites.forEach(function(site){ %>
+                                <li><a href="<%= site.link %>"<% if(site.name === "resume"){ %>  <%= "download" %> <%}%>><i class="<%= site.icon %>"></i></a></li>
+                            <% }) %>
+                                <!--<li><a href="../public/Resume.pdf" download><i class="fas fa-download"></i></a></li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright text-center">
+                <p>© 2019 Resume. All Rights Reserved | Design by <a href="<%= footer.description.link %>"> <%= footer.description.author %></a> </p>
+            </div>
+        </div>
+    </footer>
+
+
         <button onclick="topFunction()" id="myBtn" title="Go to top"></button>
         <script src="../public/main.js"></script>
 

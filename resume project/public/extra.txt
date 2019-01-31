@@ -1,55 +1,5 @@
-class="fas mr-2 fa-cogs" ui/ux
-class="fa mr-2 fa-mobile" mobile apps
-fa mr-2 fa-laptop web d
-class="fas mr-2 fa-camera" photoshop
-class="fas mr-2 fa-camera" software
-fas mr-2 fa-chart-pie graphic design
-
-
-
-
-<section id="contact">
-        <div class="contactouter">
-            <h1 class="contactheader"><%= contact.title %></h1>
-            <div class="contactcontent">
-                <div class="contactinfo">
-                    <h4>Address Info</h4>
-                    <% contact.content.forEach(function(type){  %>
-                        <div class="contacttype">
-                            <h5 class="typename"><span><i class="<%= type.icon %>"></i></span> <%= type.name %></h5>
-                            <% type.content.forEach(function(list){ %>
-                               <p class="contactinfolist"><%= list %></p>
-                            <% }) %>
-                        </div>
-                    <%  }) %>
-                </div>
-                <div class="contactform">
-                    <h4 class="formheading">Get in Touch</h4>
-                    <form method="POST" action="/resume">
-                        <div class="formlabels">
-                            <label><span><i class="fa mr-2 fa-user"></i></span>Name</label><br>
-                            <label><span><i class="fas mr-2 fa-envelope-open"></i></span>Email</label><br>
-                            <label><span><i class="fas mr-2 fa-phone"></i></span>Phone</label><br>
-                            <label><span><i class="fas mr-2 fa-edit"></i></span>Mesage</label><br>
-                        </div>
-
-
-                        <div class="formtextfields">
-                            <input type="text" name="name" placeholder="Name"><br>
-                            <input type="text" name="emailid" placeholder="Email ID"><br>
-                            <input type="tel" name="phone" placeholder="Phone"><br>
-                            <input type="text" name="message" placeholder="Message..."><br>
-                        </div>
-
-                        <div class="formbutton">
-                            <input type="submit" value="submit">
-                        </div>
-                    </form>
-                </div>
+<div style="text-align:center">
+                <% for(let i = 0; i < testimonials.image_loc.length; i++) { %>
+                    <span class="prodot" onclick="currentSlide(<%- i+1%>)"></span>
+                <% } %>
             </div>
-
-        </div>
-
-
-
-    </section>

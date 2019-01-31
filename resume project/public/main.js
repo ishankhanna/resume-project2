@@ -1,61 +1,20 @@
 let rmbtn=document.querySelector(".readmore")
-let dots=document.querySelector(".dots")
+let rmdots=document.querySelector(".dots")
 let moredesc=document.querySelector(".moredesc")
 
 rmbtn.addEventListener("click",function(){
-    if (dots.style.display === "none") {
-        dots.style.display = "inline";
+    if (rmdots.style.display === "none") {
+        rmdots.style.display = "inline";
         rmbtn.innerText = "Read more";
         moredesc.style.display = "none";
     } else {
-        dots.style.display = "none";
+        rmdots.style.display = "none";
         rmbtn.innerText = "Read less";
         moredesc.style.display = "inline";
     }
 })
 
-//
 
-
-//testimonial_js
-let i = 0;
-let ids = [];
-let time = 3000;
-let j = 0;
-
-ids[0] = "a1";
-ids[1] = "a2";
-ids[2] = "a3";
-
-function changeImg() {
-    document.getElementById(ids[j]).style.display = 'none'
-    document.getElementById(ids[i]).style.display = 'block';
-    j = i;
-    if (i < ids.length - 1) {
-        i++;
-    } else {
-        i = 0;
-    }
-
-    setTimeout('changeImg()', time);
-}
-
-
-function changeImgto(k) {
-    document.getElementById(ids[k]).style.display = 'block';
-    document.getElementById(ids[j]).style.display = 'none';
-    document.getElementById(ids[i]).style.display = 'none';
-
-    if (k < ids.length - 1) {
-        i = k + 1;
-    } else {
-        i = 0;
-    }
-
-}
-
-
-window.onload = changeImg;
 
 
 
@@ -76,27 +35,95 @@ function topFunction() {
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
+//Ajax Form
+function loadText() {
+    var xhr = new XMLHttpRequest();
+    var url = "/";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-////////////////////////MODAL//////////////////////////////////////////
 
+    xhr.onload = function() {
+        let response = JSON.parse(xhr.responseText);
+        if (response.success === "false") {
+            alert(response.error);
+        } else {
+            alert("Form was sucessfully submitted");
+        }
+    }
 
-// Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById('myImg');
-var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
-img.onclick = function(){
-    modal.style.display = "block";
-    modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
+    let form = "";
+    form += "name=" + document.getElementById("Name-Input").value + "&";
+    form += "email=" + document.getElementById("Email-Input").value + "&";
+    form += "phone=" + document.getElementById("Phone-Input").value + "&";
+    form += "message=" + document.getElementById("Message-Input").value;
+    xhr.send(form);
+    clearForm();
 }
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+function clearForm() {
+    document.getElementById('Name-Input').value = "";
+    document.getElementById('Email-Input').value = "";
+    document.getElementById('Phone-Input').value = "";
+    document.getElementById('Message-Input').value = "";
+}
+document.getElementById("submit-form").addEventListener('click', loadText);
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
+// Testimonial Carousal Code
+var slideIndex = 0, prev_slide=-1,slides,dots;
+
+function currentSlide(index) {
+    if (index > slides.length) { index = 0 } else if (index < 0) { index = slides.length - 1 }
+
+
+    slides[prev_slide].style.display = "none";
+    dots[prev_slide].className = dots[prev_slide].className.replace(" active", "");
+
+
+    slides[index].style.display = "block";
+    dots[index].className += " active";
+    prev_slide = index;
+    slideIndex = index + 1;
+    clearInterval(Interval);
+    Interval = setInterval(displayCarousel, 2000);
+}
+
+function displayCarousel() {
+    if (slideIndex > slides.length - 1) { slideIndex = 0 }
+    if (prev_slide > -1) {
+        slides[prev_slide].style.display = "none";
+        dots[prev_slide].className = dots[prev_slide].className.replace(" active", "");
+    }
+
+    slides[slideIndex].style.display = "block";
+    dots[slideIndex].className += " active";
+    prev_slide = slideIndex;
+    slideIndex++;
+}
+
+function createCarousel(cls_name, prnt_name) {
+    slides = document.getElementsByClassName(cls_name);
+    if (slides.length > 1) {
+        var db = document.createElement("div");
+        db.classList.add("dot-box");
+        document.getElementsByClassName(prnt_name)[0].appendChild(db);
+
+        for (let j = 0; j < slides.length; j++) {
+            var d = document.createElement("span");
+            d.classList.add("prodot");
+            db.appendChild(d);
+            d.addEventListener('click', currentSlide.bind(null,j));
+        }
+
+        dots = document.getElementsByClassName("prodot");
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        Interval = setInterval(displayCarousel, 2000);
+    }
+}
+
+let Interval;
+window.onload = function() {
+    createCarousel("grid_container7", "slideshow-container");
 }
